@@ -1,1 +1,64 @@
-[Paste your final watch_desktop.html content here]
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ details.title or details.name }} - Ureka. (Desktop)</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<header>
+    <h1>{{ details.title or details.name }}</h1>
+</header>
+
+<div class="container py-4">
+
+    <div class="video-container">
+        <iframe id="videoPlayer" src="/proxy/embed/{{ media_type }}/{{ tmdb_id }}/1" frameborder="0" allowfullscreen></iframe>
+    </div>
+
+    {% if media_type == 'tv' and details.number_of_episodes %}
+    <div class="mb-4">
+        <h5>Select Episode</h5>
+        <div class="episode-bar">
+            {% for ep in range(1, details.number_of_episodes + 1) %}
+            <button class="btn btn-outline-light episode-btn" data-ep="{{ ep }}">Ep {{ ep }}</button>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+    <section class="mb-4">
+        <h2>Overview</h2>
+        <p>{{ details.overview }}</p>
+        <h5>Year: {{ details.release_date or details.first_air_date }}</h5>
+    </section>
+
+    <div class="mb-4">
+        <a href="/" class="btn btn-secondary">&larr; Back to Home</a>
+    </div>
+
+</div>
+
+<footer class="mt-5">
+    <p>A Prakhar Solanki Production | <a href="https://instagram.com/prakhar.5898" target="_blank" class="text-decoration-none text-light">Follow me</a></p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+const player = document.getElementById('videoPlayer');
+const buttons = document.querySelectorAll('.episode-btn');
+buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+        const ep = btn.getAttribute('data-ep');
+        player.src = `/proxy/embed/{{ media_type }}/{{ tmdb_id }}/${ep}`;
+        buttons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+    });
+});
+</script>
+
+</body>
+</html>
