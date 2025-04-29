@@ -1,1 +1,119 @@
-[Paste your final style.css content here]
+body {
+    margin: 0;
+    background-color: #121212; /* Dark theme */
+    color: #e0e0e0;
+    font-family: 'Arial', sans-serif;
+}
+
+header, footer {
+    background-color: #1f1f1f;
+    padding: 1rem;
+    text-align: center;
+}
+
+footer {
+    font-size: 14px;
+}
+
+.container {
+    padding: 1rem;
+}
+
+/* Grid for movies/series/anime */
+.card-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.card {
+    background-color: #1f1f1f;
+    border-radius: 8px;
+    overflow: hidden;
+    width: 150px;
+    text-align: center;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+}
+
+.card-body {
+    padding: 0.5rem;
+}
+
+.card-title {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.card-subtitle {
+    font-size: 12px;
+    color: #aaaaaa;
+}
+
+/* Video container */
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+
+/* Episode and Season */
+.episode-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1rem 0;
+}
+
+.episode-bar button {
+    background-color: #343a40;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.episode-bar button.active,
+.episode-bar button:hover {
+    background-color: #007bff;
+}
+
+/* Mobile dropdown */
+@media (min-width: 768px) {
+    .mobile-dropdown {
+        display: none;
+    }
+}
+@media (max-width: 767px) {
+    .episode-bar {
+        display: none;
+    }
+}
+
+/* Search input */
+.input-group {
+    margin-bottom: 1rem;
+}
